@@ -3,15 +3,49 @@ import { useState } from 'react'
 //import viteLogo from '/vite.svg'
 import twitterLogo from "/Logo_of_Twitter.svg.png"
 import './App.css'
+import { checkValid } from "./verify"
+
 
 function App() {
-   //function to handle signin
-  function signIn(formData) {
-    const email = formData.get("email"); 
-    const password = formData.get("password");
-    alert(`You inputted ${email} and ${password}`);
-  }
+  //hook for form data
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
 
+  
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      //actual html element
+      [event.target.name]: event.target.value
+    });
+  };
+
+
+  const signIn = async (event) => {
+    //stop page reloading
+    event.preventDefault();
+
+    const { email, password} = formData
+
+    if(!checkValid(password)) {
+      alert("Password has no uppercase");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5000/users/login?email=${encodeURIComponent(email)}`)
+      const data = await response.json()
+      if(!response.ok) {
+        console.log("response failed")
+        return;
+      }
+
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
   return(
     <div className="signInBody">
@@ -25,21 +59,26 @@ function App() {
             <span className="text2">Join Today.</span>
           </div>
           {/* action calls function upon submission*/}
-          <form action={signIn}> 
+          <form onSubmit={signIn}> 
             <input
               type="email"
               name="email"
               placeholder="Enter email"
+              value={formData.email}
+              onChange={handleChange}
             
             />
             <input 
               type="password"
               name="password"
               placeholder="Enter password"
+              value={formData.password}
+              onChange={handleChange}
             />
 
-            <button type="submit">signIn</button>
+            <button class="submit" type="submit">Sign In</button>
           </form>
+          <button className="signUp">Create account</button>
        </div>
       </div>
     </div>

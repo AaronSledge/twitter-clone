@@ -24,8 +24,8 @@
 
 .signInRightSide{
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: column; /*put text and sign in/login button vertically */
+  align-items: flex-end; /* moves items to the right */
   text-align: right;
   justify-content: flex-start;
   margin-top: -200px;
@@ -46,4 +46,9 @@
   box-sizing: border-box;
 }
 
+form {
+  display: flex;
+  flex-direction: column; /* makes items vertical */
+  gap: 10px; /* adds space between each item */
+}
 
