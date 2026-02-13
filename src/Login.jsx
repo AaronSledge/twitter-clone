@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
-import twitterLogo from "/Logo_of_Twitter.svg.png"
-import './App.css'
+import twitterLogo from "/Logo_of_Twitter.png"
+import './Login.css'
 import { checkValid } from "./verify"
 import CreateAccount from "../components/CreateAccount/CreateAccount";
 
@@ -66,6 +66,7 @@ function Login() {
       console.log(data)
       if(!response.ok) {
         console.log("response failed")
+        alert("Email or password is incorrect")
         return;
       }
 
@@ -86,8 +87,6 @@ function Login() {
       return;
     }
 
-    
-  
     try {
       //hash password before storing
       const response = await fetch("http://localhost:5000/users/signup", {
@@ -109,6 +108,7 @@ function Login() {
       const data = await response.json();
       if(!response.ok) {
         console.log("response failed");
+        alert("account already created");
         return
       }
 
