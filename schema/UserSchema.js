@@ -7,7 +7,7 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true},
     password: { type: String, required: true },
     bio: {type: String, default: "" },
-    pfp: { type: String, default: null },
+    pfp: { type: String, default: "https://twitter-copy-bucket.s3.us-west-1.amazonaws.com/Default.png" },
     dateOfBirth: { type: Date, required: true},
     header: { type: String, default: null},
     followers: [{ type: Schema.Types.ObjectId, ref: "User" }],

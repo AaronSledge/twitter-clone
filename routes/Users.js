@@ -51,6 +51,7 @@ router.post("/signup", async (req, res) => {
         });
 
         newUser.save();
+        res.json({ message: "Login succesful", user: newUser});
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

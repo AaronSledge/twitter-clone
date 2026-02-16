@@ -10,6 +10,8 @@ import CreateAccount from "../components/CreateAccount/CreateAccount";
 
 
 function Login() {
+  const navigate = useNavigate();
+
   //hook for form data
   const [formData, setFormData] = useState({
     email: "",
@@ -41,7 +43,8 @@ function Login() {
     })
   }
 
-  const navigate = useNavigate();
+
+
 
   const signIn = async (event) => {
     //stop page reloading
@@ -49,6 +52,7 @@ function Login() {
 
     const { email, password} = formData
 
+    console.log(password)
     try {
       const response = await fetch("http://localhost:5000/users/login", {
         method: "POST",
@@ -79,7 +83,7 @@ function Login() {
   }
 
   const signUp = async (event) => {
-    event.preventDefault();
+  ;  event.preventDefault();
     const { username, handle, email, password, date } = accountData;
     
     if(!checkValid(password)) {
@@ -109,6 +113,7 @@ function Login() {
       if(!response.ok) {
         console.log("response failed");
         alert("account already created");
+        console.log(hi)
         return
       }
 
