@@ -3,15 +3,21 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import userRoutes from "./routes/Users.js";
+import cookieParser from "cookie-parser";
 
 //load the env variable
 dotenv.config();
 
+
 //creates express application object
 const app = express();
+app.use(cookieParser());
 
 //tells browser to allow request from other origins
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 
 
 app.use(express.json());

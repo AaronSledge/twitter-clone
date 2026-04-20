@@ -59,6 +59,7 @@ function Login() {
         headers: {
           "Content-Type": "application/json"
         },
+        credentials: "include", //add this for cookies
         body: JSON.stringify({
           email: email,
           password: password
