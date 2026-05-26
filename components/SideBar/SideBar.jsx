@@ -3,12 +3,14 @@ import homeLogo from "../../public/HomeIcon.png"
 import twitterLogo from "../../public/Logo_of_Twitter.png"
 import exploreLogo from "../../public/Explore.png"
 import notiLogo from "../../public/notifications.png"
+import chatLogo from "../../public/Chat.png"
 import "./SideBar.css"
 
 function SideBar() {
 
     const [user, setUser] = useState(null);
 
+    //run this as soon as page loads
     useEffect(() => {
         const getUser = async () => {
             try {
@@ -49,12 +51,17 @@ function SideBar() {
                             <img src={notiLogo} className="sideBarLogo" alt="sideBarLogo"></img>
                             <h3>Notifications</h3>
                         </a>
+            
                     </nav>
                 </div>
                 <div className="profile">
                     <button className="myAccount">
                         <div className="pfp">
                             <img src={user?.pfp} className="profilePicture" alt="profilePicture"></img> 
+                        </div>
+                        <div className="AccountName">
+                            <p>{user?.username}</p>
+                            <p>@{user?.handle}</p>
                         </div>
                     </button>
                 </div>

@@ -24,3 +24,19 @@
 .Icons h3 {
     color: white;
 }
+
+.myAccount {
+    background-color: #242424;
+    display: inline-block;
+}
+
+.profilePicture {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+}
+
+.pfp, .AccountName {
+    display: inline-block;
+}
