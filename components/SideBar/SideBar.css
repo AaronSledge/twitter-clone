@@ -6,6 +6,7 @@
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+    border-right: 2px solid gray; /* add line to the right side*/
 }
 
 .Icons a {
@@ -25,9 +26,25 @@
     color: white;
 }
 
+
+.post {
+    background-color: aliceblue;
+    color: black;
+    width: 200px;
+    border-radius: 50px; /* Make button more oval */
+}
+
+
 .myAccount {
     background-color: #242424;
-    display: inline-block;
+    position: fixed;
+    bottom: 0;
+}
+
+.myAccount:hover {
+    background-color: dimgrey;
+    border: none;
+    border-radius: 50px;
 }
 
 .profilePicture {
@@ -38,5 +55,5 @@
 }
 
 .pfp, .AccountName {
-    display: inline-block;
+    display: inline-block; /* makes child divs side by side */
 }

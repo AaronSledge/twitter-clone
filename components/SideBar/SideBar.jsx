@@ -54,6 +54,11 @@ function SideBar() {
             
                     </nav>
                 </div>
+
+                <div className="tweetButton">
+                    <button className="post">POST</button>
+                </div>
+                
                 <div className="profile">
                     <button className="myAccount">
                         <div className="pfp">
