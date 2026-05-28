@@ -1,0 +1,37 @@
+.center {
+    position: fixed;
+    top: 0;
+    right: 400px;
+    width: 56%;
+    height: 100vh;
+    border-bottom: 2px solid gray;
+}
+
+.topBar {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 80px;
+    border-bottom: 2px solid gray;
+}
+
+
+
+
+.fyp, .following {
+    display: inline-block;
+    width: 50%;
+    background-color: #242424;
+    border: none; /*So border doesn't highlight when hovered over */
+}
+
+.fyp {
+    text-decoration: underline;
+    text-decoration-color: rgb(23, 153, 234);
+    text-underline-offset: 5px; /*positons underline slightly below text */
+    text-decoration-thickness: 4px; /* how thick the underline is */
+}
+
+.following {
+    color: gray;
+}

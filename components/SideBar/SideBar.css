@@ -54,6 +54,10 @@
 
 }
 
+.chatLogo {
+    width: 60px;
+}
+
 .pfp, .AccountName {
     display: inline-block; /* makes child divs side by side */
 }

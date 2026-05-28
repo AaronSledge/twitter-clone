@@ -51,14 +51,17 @@ function SideBar() {
                             <img src={notiLogo} className="sideBarLogo" alt="sideBarLogo"></img>
                             <h3>Notifications</h3>
                         </a>
-            
+                        <a href="#chat">
+                            <img src={chatLogo} className="chatLogo" alt="chatLogo"></img>
+                            <h3>Chat</h3>
+                        </a>
                     </nav>
                 </div>
 
                 <div className="tweetButton">
                     <button className="post">POST</button>
                 </div>
-                
+
                 <div className="profile">
                     <button className="myAccount">
                         <div className="pfp">
