@@ -21,7 +21,7 @@
 .fyp, .following {
     display: inline-block;
     width: 50%;
-    background-color: #242424;
+    background-color: black;
     border: none; /*So border doesn't highlight when hovered over */
 }
 

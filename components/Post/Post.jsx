@@ -30,7 +30,13 @@ function Post() {
             <div className="profile">
                 <img src={user?.pfp} className="profilePicture" alt="profilePicture"></img> 
             </div>
-            <div className="tweet"></div>
+            <div className="tweetText">
+                <textarea id="tweetText" placeholder="What's happening?" row="4" cols="50"/>
+                <div className="tweetOptions">
+                    <button className="post2">Post</button>
+                </div>
+            </div>
+
         </div>
     )
 }

@@ -1,3 +1,36 @@
 .posts {
     width: 100%;
 }
+
+.profile, .tweetText {
+    display: inline-block;
+    vertical-align: top; /*pushes tweet text div slightly upwards */
+}
+
+.tweetText {
+    height: 15vh;
+    width: 92%;
+}
+
+#tweetText {
+    height: 60%;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+}
+
+.tweetOptions {
+    border-top: 2px solid gray;
+}
+
+.post2 {
+    background-color: aliceblue;
+    color: black;
+    width: 100px;
+    border-radius: 50px; /* Make button more oval */
+    display: flex; /* for margin-left */
+    margin-left: auto; /* pushes button to right */
+}
+
+
