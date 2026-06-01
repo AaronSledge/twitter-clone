@@ -66,6 +66,14 @@ router.post("/signup", async (req, res) => {
         });
 
         newUser.save();
+
+         const token = jwt.sign({userId: newUser._id}, process.env.JWT_SECRET, { expiresIn: "2h"});
+
+        //store token in browser
+        res.cookie("token", token, {
+            httpOnly: true
+        })
+
         res.json({ message: "Login succesful", user: newUser});
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -90,6 +98,39 @@ router.get("/me", jwtAuth, async (req, res) => {
 
         //signed url since bucket is private
         const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 });
+        res.json({
+            username: existingUser.username,
+            handle: existingUser.handle,
+            pfp: signedUrl
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+router.post("/account", async (req, res) => {
+    try {
+        const { handle } = req.body
+        const existingUser = await User.findOne({ handle })
+        console.log(existingUser)
+        const bucketName = process.env.BUCKET_NAME;
+        const bucketRegion = process.env.BUCKET_REGION;
+        const s3 = new S3Client ({
+            region: bucketRegion
+        })
+        
+        //used to get image url from s3 bucket
+        const command = new GetObjectCommand({
+        Bucket: bucketName,
+        Key: existingUser.pfpKey
+        })
+
+        const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 });
+        
+        if (!existingUser) {
+            return res.status(400).json({ message: "Account not found under that handle "}); 
+        }
+        
         res.json({
             username: existingUser.username,
             handle: existingUser.handle,

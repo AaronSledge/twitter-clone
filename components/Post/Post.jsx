@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from "react-router-dom"
 import "./Post.css"
 
 function Post() {
@@ -28,7 +29,10 @@ function Post() {
     return(
         <div className="posts">
             <div className="profile">
-                <img src={user?.pfp} className="profilePicture" alt="profilePicture"></img> 
+                <Link to={`/account/${user?.handle}`}>
+                    <img src={user?.pfp} className=
+                    "profilePicture" alt="profilePicture"></img> 
+                </Link>
             </div>
             <div className="tweetText">
                 <textarea id="tweetText" placeholder="What's happening?" row="4" cols="50"/>
