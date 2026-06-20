@@ -1,9 +1,9 @@
 .center {
-    position: fixed;
+    margin-left: 250px;
     top: 0;
     right: 400px;
     width: 56%;
-    height: 100vh;
+    min-height: 80vh;
     border-bottom: 2px solid gray;
 }
 

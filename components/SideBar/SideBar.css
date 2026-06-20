@@ -3,7 +3,7 @@
     left: 0;
     top: 0;
     width: 250px;
-    height: 100vh;
+    min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
     border-right: 2px solid gray; /* add line to the right side*/

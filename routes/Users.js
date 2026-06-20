@@ -101,7 +101,13 @@ router.get("/me", jwtAuth, async (req, res) => {
         res.json({
             username: existingUser.username,
             handle: existingUser.handle,
-            pfp: signedUrl
+            pfp: signedUrl,
+            bio: existingUser.bio,
+            dateOfBirth: existingUser.dateOfBirth,
+            header: signedUrl,
+            followers: existingUser.followers,
+            following: existingUser.following,
+            createdAt: existingUser.createdAt
         });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -134,7 +140,13 @@ router.post("/account", async (req, res) => {
         res.json({
             username: existingUser.username,
             handle: existingUser.handle,
-            pfp: signedUrl
+            pfp: signedUrl,
+            bio: existingUser.bio,
+            dateOfBirth: existingUser.dateOfBirth,
+            header: signedUrl,
+            followers: existingUser.followers,
+            following: existingUser.following,
+            createdAt: existingUser.createdAt
         });
     } catch (err) {
         res.status(500).json({ error: err.message });

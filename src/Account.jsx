@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 import SideBar from "../components/SideBar/SideBar"
+import "./Account.css"
 function Account() {
     const [myuser, setMyUser] = useState(null);
     const [user, setUser] = useState(null);
@@ -68,8 +69,35 @@ function Account() {
         <div className="AccountBody">
             <SideBar />
              <div className="center">
-                <div className="topBar">
-                    <h4>${user?.handle}</h4>
+                <div className="topBar2">
+                    <h4>{user?.username}</h4>
+                </div>
+                <div className="accountInfo">
+                    <div className="header-profile">
+                        <img src={user?.header} className="header" alt="header"></img>
+                        <img src={user?.pfp} className="profilePicture2" alt="profilePicture2"></img>
+                    </div>
+                    <div className="accountName">
+                        <h4 className="userName">{user?.username}</h4>
+                        <h3 className="handle">@{user?.handle}</h3>
+                    </div>
+                    <div className="accountBio">
+                        <h3>{user?.bio}</h3>
+                    </div>
+                    <div className="accountDate">
+                        <h2 className="dateOfBirth">Born {new Date(user?.dateOfBirth).toLocaleDateString()}</h2>
+                        <h2 className="createdAt">Joined {new Date(user?.createdAt).toLocaleDateString()}</h2>
+                    </div>
+                    <div className="accountFollowing">
+                        <h2>{user?.following?.lengt} following</h2>
+                        <h2>{user?.followers?.length} followers</h2>
+                    </div>
+                    <div className="typeOfTweets">
+                        <h2 className="postOption">Posts</h2>
+                        <h2 className="repliesOption">Replies</h2>
+                        <h2 className="mediaOption">Media</h2>
+                        <h2 className="likesOption">Likes</h2>
+                    </div>
                 </div>
             </div>
         </div>
