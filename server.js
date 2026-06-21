@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import userRoutes from "./routes/Users.js";
+import tweetRoutes from "./routes/Tweets.js";
 import cookieParser from "cookie-parser";
 
 //load the env variable
@@ -29,6 +30,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 app.use("/users", userRoutes);
+app.use("/tweets", tweetRoutes);
 
 app.listen(5000, () => console.log("Server running on port 5000"))
 

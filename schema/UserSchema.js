@@ -9,7 +9,7 @@ const userSchema = new Schema({
     bio: {type: String, default: "" },
     pfpKey: { type: String, default: "Default.png" },
     dateOfBirth: { type: Date, required: true},
-    header: { type: String, default: null},
+    header: { type: String, default: "Default.png"},
     followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
     following: [{ type: Schema.Types.ObjectId, ref: "User" }],
     createdAt: { type: Date, default: Date.now }

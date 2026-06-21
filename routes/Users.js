@@ -56,10 +56,7 @@ router.post("/signup", async (req, res) => {
             handle: handle,
             email: email,
             password: newPassword,
-            bio: "",
-            pfp: "",
             dateOfBirth: date,
-            header: "",
             followers: null,
             following: null,
             createdAt: Date.now()
@@ -96,15 +93,26 @@ router.get("/me", jwtAuth, async (req, res) => {
         Key: existingUser.pfpKey
         })
 
-        //signed url since bucket is private
-        const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 });
+        const signedUrl1 = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+        const command2 = new GetObjectCommand({
+        Bucket: bucketName,
+        Key: existingUser.header
+        })
+
+        const signedUrl2 = await getSignedUrl(s3, command2, { expiresIn: 3600 });
+
+        if (!existingUser) {
+            return res.status(400).json({ message: "Account not found under that handle "}); 
+        }
+        
         res.json({
             username: existingUser.username,
             handle: existingUser.handle,
-            pfp: signedUrl,
+            pfp: signedUrl1,
             bio: existingUser.bio,
             dateOfBirth: existingUser.dateOfBirth,
-            header: signedUrl,
+            header: signedUrl2,
             followers: existingUser.followers,
             following: existingUser.following,
             createdAt: existingUser.createdAt
@@ -131,8 +139,15 @@ router.post("/account", async (req, res) => {
         Key: existingUser.pfpKey
         })
 
-        const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 });
-        
+        const signedUrl1 = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+        const command2 = new GetObjectCommand({
+        Bucket: bucketName,
+        Key: existingUser.header
+        })
+
+        const signedUrl2 = await getSignedUrl(s3, command2, { expiresIn: 3600 });
+
         if (!existingUser) {
             return res.status(400).json({ message: "Account not found under that handle "}); 
         }
@@ -140,10 +155,10 @@ router.post("/account", async (req, res) => {
         res.json({
             username: existingUser.username,
             handle: existingUser.handle,
-            pfp: signedUrl,
+            pfp: signedUrl1,
             bio: existingUser.bio,
             dateOfBirth: existingUser.dateOfBirth,
-            header: signedUrl,
+            header: signedUrl2,
             followers: existingUser.followers,
             following: existingUser.following,
             createdAt: existingUser.createdAt
