@@ -8,7 +8,8 @@ const TweetSchema = new Schema({
     dateOfTweet: { type: Date, default: Date.now },
     text: { type: String, required: true},
     media: { type: String, default: ""},
-    repliedUnder: { type: String, default: ""},
+    replies: [{ type: Schema.Types.ObjectId, ref: "Tweet" }],
+    retweets: [{ type: Schema.Types.ObjectId, ref: "User" }],
     likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 

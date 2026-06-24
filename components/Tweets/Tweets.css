@@ -1,0 +1,33 @@
+.tweetBody {
+    border-bottom: 2px solid gray;
+}
+
+.tweetTop {
+    display: flex;
+    gap: 10px;
+}
+
+.handle2, .dateOfTweet2 {
+    color: gray;
+}
+
+#tweetText {
+    padding-left: 70px;
+}
+
+.tweetDetails {
+    display: flex;
+}
+
+
+.replyLogo, .retweetLogo, .likeLogo {
+    width: 40px;
+    height: 40px;
+}
+
+.repliesVisuals, .retweetsVisuals, .likesVisuals {
+    padding-right: 30%;
+}
+
+
+

@@ -57,8 +57,6 @@ router.post("/signup", async (req, res) => {
             email: email,
             password: newPassword,
             dateOfBirth: date,
-            followers: null,
-            following: null,
             createdAt: Date.now()
         });
 

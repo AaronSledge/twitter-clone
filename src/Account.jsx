@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 import SideBar from "../components/SideBar/SideBar"
+import Tweets from "../components/Tweets/Tweets"
 import "./Account.css"
 function Account() {
     const [myuser, setMyUser] = useState(null);
     const [user, setUser] = useState(null);
+    const [allTweets, setAllTweets] = useState([]);
     const { handle } = useParams();
     console.log(handle);
 
@@ -59,12 +61,41 @@ function Account() {
             }
         };
 
+        const getUserTweets = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/tweets/userTweets", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        handle
+                    })
+                })
+
+                if(!response.ok) {
+                    console.log("Status", response.status)
+                    const text = await response.text()
+                    console.log(text);
+                    return;
+                }
+
+                const data = await response.json();
+                console.log(data);
+                setAllTweets(data);
+
+
+            } catch(err) {
+                console.log(err.message);
+            }
+        };
+
         getMyUser();
         getUser();
+        getUserTweets();
     }, [handle])
 
-    
-    
+
     return(
         <div className="AccountBody">
             <SideBar />
@@ -85,12 +116,12 @@ function Account() {
                         <h3>{user?.bio}</h3>
                     </div>
                     <div className="accountDate">
-                        <h2 className="dateOfBirth">Born {new Date(user?.dateOfBirth).toLocaleDateString()}</h2>
-                        <h2 className="createdAt">Joined {new Date(user?.createdAt).toLocaleDateString()}</h2>
+                        <p className="dateOfBirth">Born {new Date(user?.dateOfBirth).toLocaleDateString()}</p>
+                        <p className="createdAt">Joined {new Date(user?.createdAt).toLocaleDateString()}</p>
                     </div>
                     <div className="accountFollowing">
-                        <h2>{user?.following?.lengt} following</h2>
-                        <h2>{user?.followers?.length} followers</h2>
+                        <p>{user?.following.length} following</p>
+                        <p>{user?.followers.length} followers</p>
                     </div>
                     <div className="typeOfTweets">
                         <h2 className="postOption">Posts</h2>
@@ -98,6 +129,9 @@ function Account() {
                         <h2 className="mediaOption">Media</h2>
                         <h2 className="likesOption">Likes</h2>
                     </div>
+                </div>
+                <div className="userTweets">
+                    <Tweets tweets={allTweets}></Tweets>
                 </div>
             </div>
         </div>
