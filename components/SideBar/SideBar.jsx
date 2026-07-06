@@ -5,6 +5,7 @@ import exploreLogo from "../../public/Explore.png"
 import notiLogo from "../../public/notifications.png"
 import chatLogo from "../../public/Chat.png"
 import "./SideBar.css"
+import { Link } from "react-router-dom"
 
 function SideBar() {
 
@@ -40,8 +41,10 @@ function SideBar() {
                     </div>
                     <nav className="Icons">
                         <a herf="/Home">
-                            <img src={homeLogo} className="sideBarLogo" alt="sideBarLogo"></img> 
-                            <h3>Home</h3>
+                            <Link to={`/Home`}>
+                                <img src={homeLogo} className="sideBarLogo" alt="sideBarLogo"></img> 
+                                <h3>Home</h3>
+                            </Link>
                         </a>
                         <a href="#explore">
                             <img src={exploreLogo} className="sideBarLogo" alt="sideBarLogo"></img>
