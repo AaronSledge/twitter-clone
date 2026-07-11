@@ -64,4 +64,16 @@ router.post("/userTweets", async (req, res) => {
     }
 });
 
+router.post("/addLike", jwtAuth, async (req, res) => {
+    try {
+        const { tweetId } = req.body;
+        const tweet = await Tweet.findById(tweetId);
+        tweet.likes.push(req.userID);
+        await tweet.save();
+        res.status(200).json({ message: "Success"});
+    } catch(err) {
+        res.status(500).json({ error: err.message});
+    }
+})
+
 export default router

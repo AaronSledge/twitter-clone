@@ -102,6 +102,7 @@ function Account() {
              <div className="center">
                 <div className="topBar2">
                     <h4>{user?.username}</h4>
+                    <p className="numTweets">{allTweets?.length} posts</p>
                 </div>
                 <div className="accountInfo">
                     <div className="header-profile">
@@ -131,7 +132,7 @@ function Account() {
                     </div>
                 </div>
                 <div className="userTweets">
-                    <Tweets tweets={allTweets}></Tweets>
+                    <Tweets tweets={allTweets} user={myuser}></Tweets>
                 </div>
             </div>
         </div>

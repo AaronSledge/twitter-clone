@@ -40,12 +40,10 @@ function SideBar() {
                         <img src={twitterLogo} className="sideBarLogo" alt="sideBarLogo"></img> 
                     </div>
                     <nav className="Icons">
-                        <a herf="/Home">
-                            <Link to={`/Home`}>
-                                <img src={homeLogo} className="sideBarLogo" alt="sideBarLogo"></img> 
-                                <h3>Home</h3>
-                            </Link>
-                        </a>
+                        <Link to={`/Home`}>
+                            <img src={homeLogo} className="sideBarLogo" alt="sideBarLogo"></img> 
+                            <h3>Home</h3>
+                        </Link>
                         <a href="#explore">
                             <img src={exploreLogo} className="sideBarLogo" alt="sideBarLogo"></img>
                             <h3>Explore</h3>

@@ -4,8 +4,10 @@ import "./Tweets.css"
 import retweetLogo from "../../public/Retweet.png"
 import replyLogo from "../../public/Reply.png"
 import likeLogo from "../../public/Like.png"
+import { addLike } from "../../src/Interaction"
 
-function Tweets({ tweets = [] }) {
+function Tweets({ tweets = [], user }) {
+
     return (
        tweets.toReversed().map((tweet) => (
             <div className="tweetBody" key={tweet._id}>
@@ -30,7 +32,9 @@ function Tweets({ tweets = [] }) {
                         <p className="numRetweets">{tweet.retweets.length}</p>
                     </div>
                     <div className="likesVisuals">
-                        <img src={likeLogo} className="likeLogo"></img>
+                        <button className="likeButton" onClick={() => addLike(tweet._id)}>
+                            <img src={likeLogo} className="likeLogo"></img>
+                        </button>
                         <p className="numLikes">{tweet.retweets.length}</p>
                     </div>
                 </div>
