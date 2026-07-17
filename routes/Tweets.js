@@ -70,7 +70,7 @@ router.post("/addLike", jwtAuth, async (req, res) => {
         const tweet = await Tweet.findById(tweetId);
         tweet.likes.push(req.userID);
         await tweet.save();
-        res.status(200).json({ message: "Success"});
+        res.json(tweet)
     } catch(err) {
         res.status(500).json({ error: err.message});
     }
@@ -82,7 +82,7 @@ router.delete("/removeLike", jwtAuth, async (req, res) => {
         const tweet = await Tweet.findById(tweetId);
         tweet.likes.pull(req.userID);
         await tweet.save();
-        res.status(200).json({ message: "Success"});
+        res.json(tweet)
     } catch(err) {
         res.status(500).json({ error: err.message});
     }

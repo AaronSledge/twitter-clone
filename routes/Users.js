@@ -107,6 +107,7 @@ router.get("/me", jwtAuth, async (req, res) => {
         res.json({
             username: existingUser.username,
             handle: existingUser.handle,
+            _id: existingUser._id,
             pfp: signedUrl1,
             bio: existingUser.bio,
             dateOfBirth: existingUser.dateOfBirth,

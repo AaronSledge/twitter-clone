@@ -132,7 +132,7 @@ function Account() {
                     </div>
                 </div>
                 <div className="userTweets">
-                    <Tweets tweets={allTweets} user={myuser}></Tweets>
+                    <Tweets tweets={allTweets} setTweets={setAllTweets} user={myuser}></Tweets>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ export async function addLike(tweetId) {
         if(!response.ok) {
             console.log(data);
         }
+        return data;
     } catch(err) {
         console.log(err.message)
     }
@@ -32,6 +33,7 @@ export async function removeLike(tweetId) {
         if(!response.ok) {
             console.log(data);
         }
+        return data
     } catch(err) {
         console.log(err.message);
     }
