@@ -5,9 +5,26 @@ import retweetLogo from "../../public/Retweet.png"
 import replyLogo from "../../public/Reply.png"
 import likeLogo from "../../public/Like.png"
 import { addLike } from "../../src/Interaction"
+import { removeLike } from "../../src/Interaction"
 
 function Tweets({ tweets = [], user }) {
 
+    const likeOrRemove = async (tweetId) => {
+        const response = await fetch("http://localhost:5000/tweets/likeOrRemove", {
+            method: "POST",
+             credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ tweetId })
+        });
+        const data = await response.json();
+        if(!data.liked) {
+            addLike(tweetId);
+            return;
+        }
+        removeLike(tweetId);
+    }
     return (
        tweets.toReversed().map((tweet) => (
             <div className="tweetBody" key={tweet._id}>
@@ -32,10 +49,10 @@ function Tweets({ tweets = [], user }) {
                         <p className="numRetweets">{tweet.retweets.length}</p>
                     </div>
                     <div className="likesVisuals">
-                        <button className="likeButton" onClick={() => addLike(tweet._id)}>
+                        <button className="likeButton" onClick={() => likeOrRemove(tweet._id)}>
                             <img src={likeLogo} className="likeLogo"></img>
                         </button>
-                        <p className="numLikes">{tweet.retweets.length}</p>
+                        <p className="numLikes">{tweet.likes.length}</p>
                     </div>
                 </div>
                 

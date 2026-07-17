@@ -76,4 +76,27 @@ router.post("/addLike", jwtAuth, async (req, res) => {
     }
 })
 
+router.delete("/removeLike", jwtAuth, async (req, res) => {
+    try {
+        const { tweetId } = req.body;
+        const tweet = await Tweet.findById(tweetId);
+        tweet.likes.pull(req.userID);
+        await tweet.save();
+        res.status(200).json({ message: "Success"});
+    } catch(err) {
+        res.status(500).json({ error: err.message});
+    }
+})
+
+router.post("/likeOrRemove", jwtAuth, async (req, res) => {
+    try {
+        const { tweetId } = req.body;
+        const tweet = await Tweet.findById(tweetId);
+        const liked = tweet.likes.includes(req.userID)
+        res.json({ liked: liked});
+    } catch(err) {
+        res.status(500).json({ error: err.message});
+    }
+})
+
 export default router
